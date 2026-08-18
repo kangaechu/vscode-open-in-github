@@ -8,11 +8,11 @@ suite("#formatBitbucketServerFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10"
+      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10",
     );
   });
   test("should format strings for quick pick view with remote mapping", () => {
@@ -23,11 +23,11 @@ suite("#formatBitbucketServerFileUrl", () => {
       {
         "https://bitbucket.org": "https://mapped.bitbucket.org",
       },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10"
+      "https://mapped.bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -36,11 +36,11 @@ suite("#formatBitbucketServerFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10-20"
+      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10-20",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -49,22 +49,22 @@ suite("#formatBitbucketServerFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10"
+      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster#10",
     );
   });
   test("should format strings for quick pick view", () => {
     const results = formatBitbucketServerUrl(
       "https://bitbucket.org/my-project/my-repo",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster"
+      "https://bitbucket.org/projects/my-project/repos/my-repo/browse/rel/path/to/file.js?at=refs%2Fheads%2Fmaster",
     );
   });
 });

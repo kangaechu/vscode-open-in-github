@@ -31,7 +31,7 @@ export type RemoteURLMappings = Record<string, string>;
 export function baseCommand(
   commandName: string,
   action: Action,
-  formatters: Formatters
+  formatters: Formatters,
 ) {
   const activeTextEditor = window.activeTextEditor;
 
@@ -47,7 +47,7 @@ export function baseCommand(
   const selectedLines = { start: lineStart, end: lineEnd };
   const config = workspace.getConfiguration(
     "openInGitHub",
-    window.activeTextEditor.document.uri
+    window.activeTextEditor.document.uri,
   );
   const defaultBranch =
     workspace
@@ -87,7 +87,7 @@ export function baseCommand(
             projectPath,
             defaultBranch,
             maxBuffer,
-            excludeCurrentRevision
+            excludeCurrentRevision,
           )
     )
       .then((branches) => {
@@ -96,7 +96,7 @@ export function baseCommand(
           projectPath,
           defaultRemote,
           defaultBranch,
-          branches
+          branches,
         ).then(formatRemotes);
         return Promise.all([getRemotesPromise, branches]);
       })
@@ -108,7 +108,7 @@ export function baseCommand(
           commandName,
           relativeFilePath,
           selectedLines,
-          result
+          result,
         );
       })
       .then(showQuickPickWindow)
@@ -124,7 +124,7 @@ function displayErrorMessage(err: string | (Error & { code?: string })) {
 
   if (err?.code === "ERR_CHILD_PROCESS_STDIO_MAXBUFFER") {
     return window.showErrorMessage(
-      'Child process stdio maxbuffer error, increase the maxBuffer size in setting, e.g.:\n\n "openInGithub.maxBuffer": 512000'
+      'Child process stdio maxbuffer error, increase the maxBuffer size in setting, e.g.:\n\n "openInGithub.maxBuffer": 512000',
     );
   }
 
@@ -147,7 +147,7 @@ export function getRepoRoot(exec, workspacePath: string): Promise<string> {
       (error, stdout, stderr) => {
         if (stderr || error) return reject(stderr || error);
         resolve(stdout.trim());
-      }
+      },
     );
   });
 }
@@ -168,7 +168,7 @@ export function getRemotes(
   projectPath: string,
   defaultRemote: string,
   defaultBranch: string,
-  branches: string[]
+  branches: string[],
 ) {
   /**
    * If there is only default branch that was pushed to remote then return only default remote.
@@ -193,7 +193,7 @@ export function getRemotes(
 export function getAllRemotes(
   exec,
   projectPath: string,
-  defaultRemote: string
+  defaultRemote: string,
 ): Promise<string[]> {
   const sortRemoteByDefaultRemote = (defaultRemote: string) =>
     defaultRemote
@@ -201,8 +201,8 @@ export function getAllRemotes(
           a[0].startsWith(defaultRemote)
             ? -1
             : b[0].startsWith(defaultRemote)
-            ? 1
-            : 0
+              ? 1
+              : 0,
         )
       : R.identity;
   const process = R.compose(
@@ -213,7 +213,7 @@ export function getAllRemotes(
     R.map(R.last),
     sortRemoteByDefaultRemote(defaultRemote),
     R.map(R.split(/\t/)),
-    R.split("\n")
+    R.split("\n"),
   );
 
   return new Promise((resolve, reject) => {
@@ -236,7 +236,7 @@ export function getAllRemotes(
 export function getRemoteByName(
   exec,
   projectPath: string,
-  remoteName: string
+  remoteName: string,
 ): Promise<string[]> {
   return new Promise((resolve, reject) => {
     exec(
@@ -245,7 +245,7 @@ export function getRemoteByName(
       (error, stdout, stderr) => {
         if (stderr || error) return reject(stderr || error);
         resolve([stdout]);
-      }
+      },
     );
   });
 }
@@ -266,7 +266,7 @@ export function formatRemotes(remotes: string[]): string[] {
     R.map(R.trim),
     R.map((rem) => rem.replace(/\/\/(.+)@github/, "//github")),
     R.map((rem) =>
-      rem.match(/github\.com/) ? rem.replace(/\.git(\b|$)/, "") : rem
+      rem.match(/github\.com/) ? rem.replace(/\.git(\b|$)/, "") : rem,
     ),
     R.reject(R.isNil),
     R.map((rem) => {
@@ -288,7 +288,7 @@ export function formatRemotes(remotes: string[]): string[] {
       } else if (rem.match(/^git:/)) {
         return rem.replace(/^git/, "https");
       }
-    })
+    }),
   );
 
   return process(remotes);
@@ -310,7 +310,7 @@ export function getBranches(
   projectPath: string,
   defaultBranch: string,
   maxBuffer?: number,
-  excludeCurrentRevision?: boolean
+  excludeCurrentRevision?: boolean,
 ): Promise<string[]> {
   return new Promise((resolve, reject) => {
     const options: any = { cwd: projectPath };
@@ -323,12 +323,12 @@ export function getBranches(
         R.trim,
         R.replace("*", ""),
         R.find((line) => line.startsWith("*")),
-        R.split("\n")
+        R.split("\n"),
       );
 
       const processBranches = R.compose(
         R.filter((br) => stdout.match(new RegExp(`remotes\/.*\/${br}`))),
-        R.uniq
+        R.uniq,
       );
 
       const currentBranch = getCurrentBranch(stdout);
@@ -360,7 +360,7 @@ export function getCurrentRevision(exec, projectPath: string): Promise<string> {
       (error, stdout, stderr) => {
         if (stderr || error) return reject(stderr || error);
         resolve(stdout.trim());
-      }
+      },
     );
   });
 }
@@ -373,7 +373,7 @@ export function formatQuickPickItems(
   relativeFilePath: string,
   lines: SelectedLines,
   remotes: string[],
-  branch: string
+  branch: string,
 ): QuickPickItem[] {
   return remotes
     .map((remote) => ({
@@ -383,7 +383,7 @@ export function formatQuickPickItems(
         branch,
         relativeFilePath,
         remoteURLMappings,
-        lines
+        lines,
       ),
     }))
     .map((remote) => ({
@@ -409,7 +409,7 @@ export function prepareQuickPickItems(
   commandName: string,
   relativeFilePath: string,
   lines: SelectedLines,
-  [remotes, branches]: string[][]
+  [remotes, branches]: string[][],
 ): QuickPickItem[] {
   if (!branches.length) {
     return [];
@@ -424,7 +424,7 @@ export function prepareQuickPickItems(
       relativeFilePath,
       lines,
       remotes,
-      branches[0]
+      branches[0],
     );
   }
 
@@ -434,7 +434,7 @@ export function prepareQuickPickItems(
     (results) =>
       R.map(
         (i) => R.map((item) => item[i], results),
-        R.range(0, results[0].length)
+        R.range(0, results[0].length),
       ),
     R.map((branch) =>
       formatQuickPickItems(
@@ -445,9 +445,9 @@ export function prepareQuickPickItems(
         relativeFilePath,
         lines,
         remotes,
-        branch
-      )
-    )
+        branch,
+      ),
+    ),
   );
   return processBranches(branches);
 }
@@ -475,7 +475,7 @@ export function isGitlab(remote: string): boolean {
 
 export function formatBitbucketLinePointer(
   filePath: string,
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   if (!lines || !lines.start) {
     return "";
@@ -558,7 +558,7 @@ export function copyQuickPickItem(item?: QuickPickItem) {
 function chooseFormatter(
   formatters: Formatters,
   repositoryType: string,
-  remote: string
+  remote: string,
 ): Function {
   switch (repositoryType) {
     case "auto": {

@@ -5,7 +5,7 @@ export function formatBitbucketServerUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const re = /(https\:\/\/[^\/]+)\/([^\/]+)\/([^\/]+)/;
   const matches = remote.match(re);

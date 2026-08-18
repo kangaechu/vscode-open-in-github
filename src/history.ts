@@ -23,7 +23,7 @@ export function formatGitHubHistoryUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
@@ -37,7 +37,7 @@ export function formatBitbucketHistoryUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings

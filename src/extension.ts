@@ -8,27 +8,27 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "openInGithub.openInGitHubFile",
-      fileCommand(openQuickPickItem)
+      fileCommand(openQuickPickItem),
     ),
     vscode.commands.registerCommand(
       "openInGithub.openInGitHubBlame",
-      blameCommand(openQuickPickItem)
+      blameCommand(openQuickPickItem),
     ),
     vscode.commands.registerCommand(
       "openInGithub.openInGitHubHistory",
-      historyCommand(openQuickPickItem)
+      historyCommand(openQuickPickItem),
     ),
     vscode.commands.registerCommand(
       "openInGithub.copyInGitHubFile",
-      fileCommand(copyQuickPickItem)
+      fileCommand(copyQuickPickItem),
     ),
     vscode.commands.registerCommand(
       "openInGithub.copyInGitHubBlame",
-      blameCommand(copyQuickPickItem)
+      blameCommand(copyQuickPickItem),
     ),
     vscode.commands.registerCommand(
       "openInGithub.copyInGitHubHistory",
-      historyCommand(copyQuickPickItem)
-    )
+      historyCommand(copyQuickPickItem),
+    ),
   );
 }

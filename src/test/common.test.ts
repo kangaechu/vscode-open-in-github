@@ -16,7 +16,7 @@ upstream	https://github.yandex-team.ru/serp/web4 (push)
         "",
         "",
         "",
-        ["master"]
+        ["master"],
       )
       .then((list) => {
         assert.deepEqual(list, [
@@ -35,7 +35,7 @@ upstream	https://github.yandex-team.ru/serp/web4 (push)
         "",
         "upstream",
         "",
-        ["master"]
+        ["master"],
       )
       .then((list) => {
         assert.deepEqual(list, [
@@ -54,7 +54,7 @@ upstream	https://github.yandex-team.ru/serp/web4 (push)
         "",
         "",
         "",
-        ["master"]
+        ["master"],
       )
       .then(done)
       .catch(() => done());
@@ -81,7 +81,7 @@ suite("#formatRemotes", () => {
 
   test("should correctly format all types of git remote urls", () => {
     const result = mockRemotesList.map(
-      (mock) => common.formatRemotes([mock])[0]
+      (mock) => common.formatRemotes([mock])[0],
     );
     assert.deepEqual(result, [
       "https://github.com/d4rkr00t/language-stylus",
@@ -121,7 +121,7 @@ suite("#getBranches", () => {
         "",
         "dev",
         100,
-        true
+        true,
       )
       .then((branch) => {
         assert.deepEqual(branch, ["sysoev/SERP-42779", "dev"]);
@@ -137,7 +137,7 @@ suite("#getBranches", () => {
         "",
         "dev",
         100,
-        true
+        true,
       )
       .then((branch) => {
         !branch.length && done();
@@ -150,7 +150,7 @@ suite("#getBranches", () => {
       .getBranches(
         (cmd, opts, cb) => cb(null, mockBranchResult, "error"),
         "",
-        "dev"
+        "dev",
       )
       .then(done)
       .catch(() => done());
@@ -164,7 +164,7 @@ suite("#getCurrentRevision", () => {
     common
       .getCurrentRevision(
         (cmd, opts, cb) => cb(null, mockRevisionResult, null),
-        ""
+        "",
       )
       .then((branch) => {
         assert.deepEqual(branch, "abc123");
@@ -177,7 +177,7 @@ suite("#getCurrentRevision", () => {
     common
       .getCurrentRevision(
         (cmd, opts, cb) => cb(null, mockRevisionResult, "error"),
-        ""
+        "",
       )
       .then(done)
       .catch(() => done());
@@ -200,7 +200,7 @@ suite("#prepareQuickPickItems", () => {
         "test-command",
         "file.js",
         { start: 10 },
-        [["https://rem"], ["master"]]
+        [["https://rem"], ["master"]],
       );
       assert.equal(result.length, 1);
     });
@@ -213,7 +213,7 @@ suite("#prepareQuickPickItems", () => {
         "test-command",
         "file.js",
         { start: 10, end: 20 },
-        [["https://rem"], ["master"]]
+        [["https://rem"], ["master"]],
       );
       assert.equal(result.length, 1);
     });
@@ -226,7 +226,7 @@ suite("#prepareQuickPickItems", () => {
         "test-command",
         "file.js",
         { start: 10, end: 20 },
-        [["https://rem", "https://rem2"], ["master"]]
+        [["https://rem", "https://rem2"], ["master"]],
       );
       assert.equal(result.length, 2);
     });
@@ -243,7 +243,7 @@ suite("#prepareQuickPickItems", () => {
       [
         ["https://rem", "https://rem2"],
         ["feat", "master"],
-      ]
+      ],
     );
 
     test("should merge quick pick items for current branch and master branch", () => {

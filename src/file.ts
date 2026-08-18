@@ -26,16 +26,16 @@ export function formatGitHubFileUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
       ? remoteURLMappings[derivedRemote]
       : derivedRemote;
   return `${remote}/blob/${formatGithubBranchName(
-    branch
+    branch,
   )}/${filePath}${formatGitHubQueryParams(filePath)}${formatGitHubLinePointer(
-    lines
+    lines,
   )}`;
 }
 
@@ -44,7 +44,7 @@ export function formatBitbucketFileUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
@@ -52,7 +52,7 @@ export function formatBitbucketFileUrl(
       : derivedRemote;
   return `${remote}/src/${branch}/${filePath}${formatBitbucketLinePointer(
     filePath,
-    lines
+    lines,
   )}`;
 }
 
@@ -61,13 +61,13 @@ export function formatGitlabFileUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
       ? remoteURLMappings[derivedRemote]
       : derivedRemote;
   return `${remote}/blob/${formatGithubBranchName(
-    branch
+    branch,
   )}/${filePath}${formatGitlabLinePointer(lines)}`;
 }

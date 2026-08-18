@@ -8,11 +8,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://remote.url/blob/master/rel/path/to/file.js#L10"
+      "https://remote.url/blob/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -22,11 +22,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       { "https://remote.url": "https://mapped.remote.url" },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.remote.url/blob/master/rel/path/to/file.js#L10"
+      "https://mapped.remote.url/blob/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -36,11 +36,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://remote.url/blob/master/rel/path/to/file.js#L10-L20"
+      "https://remote.url/blob/master/rel/path/to/file.js#L10-L20",
     );
   });
 
@@ -50,11 +50,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://remote.url/blob/master/rel/path/to/file.js#L10"
+      "https://remote.url/blob/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -62,7 +62,7 @@ suite("fileCommand # formatGitHubFileUrl", () => {
     const results = file.formatGitHubFileUrl(
       "https://remote.url",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(results, "https://remote.url/blob/master/rel/path/to/file.js");
   });
@@ -71,11 +71,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
     const results = file.formatGitHubFileUrl(
       "https://remote.url",
       "feature/#foo",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://remote.url/blob/feature/%23foo/rel/path/to/file.js"
+      "https://remote.url/blob/feature/%23foo/rel/path/to/file.js",
     );
   });
 
@@ -85,11 +85,11 @@ suite("fileCommand # formatGitHubFileUrl", () => {
       "master",
       "rel/path/to/file.md",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://remote.url/blob/master/rel/path/to/file.md?plain=1#L10"
+      "https://remote.url/blob/master/rel/path/to/file.md?plain=1#L10",
     );
   });
 });
@@ -101,11 +101,11 @@ suite("fileCommand # formatBitbucketFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10"
+      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10",
     );
   });
   test("should format strings for quick pick view with remote mapping", () => {
@@ -117,11 +117,11 @@ suite("fileCommand # formatBitbucketFileUrl", () => {
         "https://bitbucket.org/some/repo":
           "https://mapped.bitbucket.org/some/repo",
       },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10"
+      "https://mapped.bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -130,11 +130,11 @@ suite("fileCommand # formatBitbucketFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10:20"
+      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10:20",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -143,22 +143,22 @@ suite("fileCommand # formatBitbucketFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10"
+      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js#file.js-10",
     );
   });
   test("should format strings for quick pick view", () => {
     const results = file.formatBitbucketFileUrl(
       "https://bitbucket.org/some/repo",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js"
+      "https://bitbucket.org/some/repo/src/master/rel/path/to/file.js",
     );
   });
 });
@@ -170,11 +170,11 @@ suite("fileCommand # formatGitlabFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10"
+      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10",
     );
   });
   test("should format strings for quick pick view with remote mapping", () => {
@@ -183,11 +183,11 @@ suite("fileCommand # formatGitlabFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       { "https://gitlab.com/test/repo": "https://mapped.gitlab.com/test/repo" },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10"
+      "https://mapped.gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -196,11 +196,11 @@ suite("fileCommand # formatGitlabFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10-20"
+      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10-20",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -209,33 +209,33 @@ suite("fileCommand # formatGitlabFileUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10"
+      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js#L10",
     );
   });
   test("should format strings for quick pick view", () => {
     const results = file.formatGitlabFileUrl(
       "https://gitlab.com/test/repo",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js"
+      "https://gitlab.com/test/repo/blob/master/rel/path/to/file.js",
     );
   });
   test("should format strings for quick pick view", () => {
     const results = file.formatGitlabFileUrl(
       "https://gitlab.com/test/repo",
       "feature/#foo",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blob/feature/%23foo/rel/path/to/file.js"
+      "https://gitlab.com/test/repo/blob/feature/%23foo/rel/path/to/file.js",
     );
   });
 });
