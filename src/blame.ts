@@ -25,14 +25,14 @@ export function formatGitHubBlameUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
       ? remoteURLMappings[derivedRemote]
       : derivedRemote;
   return `${remote}/blame/${formatGithubBranchName(
-    branch
+    branch,
   )}/${filePath}${formatGitHubLinePointer(lines)}`;
 }
 
@@ -41,7 +41,7 @@ export function formatBitbucketBlameUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
@@ -49,7 +49,7 @@ export function formatBitbucketBlameUrl(
       : derivedRemote;
   return `${remote}/annotate/${branch}/${filePath}${formatBitbucketLinePointer(
     filePath,
-    lines
+    lines,
   )}`;
 }
 
@@ -58,13 +58,13 @@ export function formatGitlabBlameUrl(
   branch: string,
   filePath: string,
   remoteURLMappings: RemoteURLMappings = {},
-  lines?: SelectedLines
+  lines?: SelectedLines,
 ): string {
   const remote =
     derivedRemote in remoteURLMappings
       ? remoteURLMappings[derivedRemote]
       : derivedRemote;
   return `${remote}/blame/${formatGithubBranchName(
-    branch
+    branch,
   )}/${filePath}${formatGitlabLinePointer(lines)}`;
 }

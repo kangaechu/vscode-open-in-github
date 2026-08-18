@@ -18,7 +18,7 @@ async function main() {
     // ~103 chars), so point it at a short path under the OS temp dir instead.
     const userDataDir = path.join(
       os.tmpdir(),
-      "vscode-open-in-github-test-user-data"
+      "vscode-open-in-github-test-user-data",
     );
 
     // Download VS Code, unzip it and run the integration test

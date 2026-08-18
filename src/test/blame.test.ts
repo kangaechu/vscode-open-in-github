@@ -8,11 +8,11 @@ suite("blameCommand # formatGitHubBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://remote.url/blame/master/rel/path/to/file.js#L10"
+      "https://remote.url/blame/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -22,11 +22,11 @@ suite("blameCommand # formatGitHubBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       { "https://remote.url": "https://mapped.remote.url" },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.remote.url/blame/master/rel/path/to/file.js#L10"
+      "https://mapped.remote.url/blame/master/rel/path/to/file.js#L10",
     );
   });
   test("should format strings for quick pick view", () => {
@@ -35,11 +35,11 @@ suite("blameCommand # formatGitHubBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://remote.url/blame/master/rel/path/to/file.js#L10-L20"
+      "https://remote.url/blame/master/rel/path/to/file.js#L10-L20",
     );
   });
 
@@ -49,11 +49,11 @@ suite("blameCommand # formatGitHubBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://remote.url/blame/master/rel/path/to/file.js#L10"
+      "https://remote.url/blame/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -61,11 +61,11 @@ suite("blameCommand # formatGitHubBlameUrl", () => {
     const results = blame.formatGitHubBlameUrl(
       "https://remote.url",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://remote.url/blame/master/rel/path/to/file.js"
+      "https://remote.url/blame/master/rel/path/to/file.js",
     );
   });
 });
@@ -77,11 +77,11 @@ suite("blameCommand # formatBitbucketBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10"
+      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10",
     );
   });
 
@@ -94,11 +94,11 @@ suite("blameCommand # formatBitbucketBlameUrl", () => {
         "https://bitbucket.org/some/repo":
           "https://mapped.bitbucket.org/some/repo",
       },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10"
+      "https://mapped.bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10",
     );
   });
 
@@ -108,11 +108,11 @@ suite("blameCommand # formatBitbucketBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10:20"
+      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10:20",
     );
   });
 
@@ -122,11 +122,11 @@ suite("blameCommand # formatBitbucketBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10"
+      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js#file.js-10",
     );
   });
 
@@ -134,11 +134,11 @@ suite("blameCommand # formatBitbucketBlameUrl", () => {
     const results = blame.formatBitbucketBlameUrl(
       "https://bitbucket.org/some/repo",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js"
+      "https://bitbucket.org/some/repo/annotate/master/rel/path/to/file.js",
     );
   });
 });
@@ -150,11 +150,11 @@ suite("blameCommand # formatGitlabBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10"
+      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -164,11 +164,11 @@ suite("blameCommand # formatGitlabBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       { "https://gitlab.com/test/repo": "https://mapped.gitlab.com/test/repo" },
-      { start: 10 }
+      { start: 10 },
     );
     assert.equal(
       results,
-      "https://mapped.gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10"
+      "https://mapped.gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -178,11 +178,11 @@ suite("blameCommand # formatGitlabBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 20 }
+      { start: 10, end: 20 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10-20"
+      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10-20",
     );
   });
 
@@ -192,11 +192,11 @@ suite("blameCommand # formatGitlabBlameUrl", () => {
       "master",
       "rel/path/to/file.js",
       {},
-      { start: 10, end: 10 }
+      { start: 10, end: 10 },
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10"
+      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js#L10",
     );
   });
 
@@ -204,11 +204,11 @@ suite("blameCommand # formatGitlabBlameUrl", () => {
     const results = blame.formatGitlabBlameUrl(
       "https://gitlab.com/test/repo",
       "master",
-      "rel/path/to/file.js"
+      "rel/path/to/file.js",
     );
     assert.equal(
       results,
-      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js"
+      "https://gitlab.com/test/repo/blame/master/rel/path/to/file.js",
     );
   });
 });
