@@ -1,6 +1,6 @@
 {
-  "name": "vscode-open-in-github",
-  "displayName": "Open In GitHub",
+  "name": "open-in-github-kangaechu",
+  "displayName": "Open In GitHub - kangaechu",
   "description": "Provides commands to quickly view the current file on GitHub.",
   "license": "MIT",
   "version": "1.18.0",
